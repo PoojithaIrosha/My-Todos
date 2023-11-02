@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#0972C8</color>
+    <color name="background">#082032</color>
+    <color name="primaryContainer">#ECF2FF</color>
+    <color name="primaryTitle">#F2F2F2</color>
+    <color name="secondaryTitle">#9DB2BF</color>
+    <color name="cardBackground">#0A2647</color>
+
+    <color name="login_rectangle">#89CFF3</color>
+    <color name="login_rectangle_dark">#0C356A</color>
+</resources>
