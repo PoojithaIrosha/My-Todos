@@ -13,15 +13,23 @@
         android:theme="@style/Theme.MyTodos"
         tools:targetApi="31">
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".auth.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.TodoActivity" android:exported="true" />
-        <activity android:name=".ui.AddTodoActivity" android:exported="false" />
+        <activity
+            android:name=".todo.TodoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".todo.AddTodoActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

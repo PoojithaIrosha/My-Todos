@@ -11,14 +11,15 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.poojithairosha.mytodos.R;
+import com.poojithairosha.mytodos.auth.AuthViewModel;
 
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
     private List<Todo> todoList;
     private TodoViewModel todoViewModel;
-
 
     public TodoAdapter(List<Todo> todoList, TodoViewModel todoViewModel) {
         this.todoList = todoList;
@@ -70,9 +71,19 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         });
 
         holder.cancelBtn.setOnClickListener(v -> {
-            todoViewModel.deleteTodo(holder.checkBox.getText().toString());
-            this.todoList.remove(position);
-            notifyDataSetChanged();
+            MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(holder.cancelBtn.getContext());
+            materialAlertDialogBuilder
+                    .setTitle("Delete")
+                    .setMessage("Are you sure you want to delete this todo?")
+                    .setIcon(R.drawable.baseline_delete_24)
+                    .setNegativeButton("Cancel", (dialog, which) -> {
+                    })
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        todoViewModel.deleteTodo(holder.checkBox.getText().toString());
+                        this.todoList.remove(position);
+                        notifyDataSetChanged();
+                    })
+                    .show();
         });
     }
 

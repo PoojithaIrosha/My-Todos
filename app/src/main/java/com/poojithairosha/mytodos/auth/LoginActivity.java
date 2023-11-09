@@ -1,20 +1,19 @@
-package com.poojithairosha.mytodos.ui;
+package com.poojithairosha.mytodos.auth;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.poojithairosha.mytodos.R;
-import com.poojithairosha.mytodos.auth.AuthViewModel;
+import com.poojithairosha.mytodos.databinding.ActivityLoginBinding;
+import com.poojithairosha.mytodos.todo.TodoActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private AuthViewModel authViewModel;
+    private ActivityLoginBinding binding;
 
     @Override
     protected void onStart() {
@@ -28,22 +27,21 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
-        Button loginBtn = findViewById(R.id.btnLogin);
-        loginBtn.setOnClickListener(v -> {
+        binding.btnLogin.setOnClickListener(v -> {
 
-            EditText etEmail = findViewById(R.id.etEmail);
-            EditText etPassword = findViewById(R.id.etPassword);
-
-            String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
+            String email = binding.etEmail.getText().toString().trim();
+            String password = binding.etPassword.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "Email and password are required", Toast.LENGTH_SHORT).show();
-            } else {
+            } else if(password.length() < 6) {
+                Toast.makeText(LoginActivity.this, "Password should contain at least 6 characters", Toast.LENGTH_SHORT).show();
+            }else {
 
                 authViewModel.login(email, password, isLoggedIn -> {
                     if (isLoggedIn) {
@@ -55,6 +53,10 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
 
+        });
+
+        binding.registerLink.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
     }

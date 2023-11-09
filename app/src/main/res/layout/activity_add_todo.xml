@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.AddTodoActivity">
+    tools:context=".todo.AddTodoActivity">
 
     <ImageButton
         android:id="@+id/backBtn"
@@ -14,10 +14,10 @@
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:tint="@color/secondaryTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back" />
+        app:srcCompat="@drawable/ic_back"
+        app:tint="@color/secondaryTitle" />
 
     <TextView
         android:id="@+id/textView"

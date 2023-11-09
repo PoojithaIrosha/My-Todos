@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/itemMain1"
+        android:title="General">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_home"
+                android:title="Home"
+                />
+            <item
+                android:id="@+id/nav_search"
+                android:icon="@drawable/search"
+                android:title="Search"
+                />
+            <item
+                android:id="@+id/nav_notifications"
+                android:icon="@drawable/notification"
+                android:title="Notifications"
+                />
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/itemMain2"
+        android:title="Login &amp; Registration">
+        <menu>
+            <item
+                android:id="@+id/nav_signOut"
+                android:icon="@drawable/ic_sign_out"
+                android:title="Sign Out" />
+        </menu>
+    </item>
+
+</menu>

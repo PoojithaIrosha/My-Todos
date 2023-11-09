@@ -12,5 +12,8 @@
     <color name="login_rectangle">#A9D4F8</color>
     <color name="login_rectangle_dark">#0866B3</color>
 
+    <color name="navigation_item_color">#279EFF</color>
+    <color name="navigation_item_background_color">#A9D4F8</color>
+
 
 </resources>

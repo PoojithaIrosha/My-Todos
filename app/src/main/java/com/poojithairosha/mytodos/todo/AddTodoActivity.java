@@ -1,4 +1,4 @@
-package com.poojithairosha.mytodos.ui;
+package com.poojithairosha.mytodos.todo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -6,40 +6,33 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.poojithairosha.mytodos.R;
-import com.poojithairosha.mytodos.todo.Todo;
-import com.poojithairosha.mytodos.todo.TodoViewModel;
+import com.poojithairosha.mytodos.databinding.ActivityAddTodoBinding;
 
 public class AddTodoActivity extends AppCompatActivity {
 
     private TodoViewModel todoViewModel;
+    private ActivityAddTodoBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_todo);
+        binding = ActivityAddTodoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
 
-        ImageButton backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(v -> {
+        binding.backBtn.setOnClickListener(v -> {
             // Close the keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-
             finish();
         });
 
-        Button btnAddTodo = findViewById(R.id.btnAddTodo);
-        btnAddTodo.setOnClickListener(v -> {
-            EditText etTodo = findViewById(R.id.etTodo);
-            String todoText = etTodo.getText().toString().trim();
+        binding.btnAddTodo.setOnClickListener(v -> {
 
+            String todoText = binding.etTodo.getText().toString().trim();
             if (todoText.isEmpty()) {
                 Toast.makeText(AddTodoActivity.this, "Todo cannot be empty!", Toast.LENGTH_SHORT).show();
             } else {
@@ -51,6 +44,5 @@ public class AddTodoActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
 }
